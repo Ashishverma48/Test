@@ -58,7 +58,7 @@ bench restart
 Define Material Groups, Test Groups & Names, Test Specs (limits), Test Protocols (standards), Test Space Table (properties, units, precision), and AML Task Configuration.  
 
 ### Order Creation  
-Sales Order → AML Order (Job Packet).  
+Sales Order → AML Order .  
 
 ### Sample Creation  
 AML Order → Capture Grade, Material of Construction, Sample Description & Details, Dimensions, Attachments, and Required Tests.  
@@ -92,7 +92,7 @@ Before using AccuMatLab, complete the following setup steps:
 - [x] Create **Customer & Address** (link Address to Customer)  
 - [x] Fill **User in AML Task Configuration** and Authorized Signatory in AML Test Group  
 - [x] Create **AML Orders** → Independent AML Task auto-created  
-- [x] Create **AML Sample** → Independent AML Sample auto-created  
+- [x] Create **AML Sample** → Independent AML Task auto-created  
 - [x] Create **AML Test** (Test Group must be selected in Test Name)  
 - [x] Update Task → Task auto-created  
 - [x] Create **AML Test Report**  
