@@ -84,7 +84,8 @@ The Job Order depends on a few **supporting DocTypes** to provide data automatic
 |---------|---------|
 | **Employee Certification** | Stores employee skills, NDT Level (I/II/III), certification validity, and expiry dates. Used for auto-checking manpower eligibility. |
 | **Test Method Master** | Defines available test methods (UT, PT, PAUT, RT, MT, VT, etc.) with standards, codes, and acceptance criteria. <br>➡ Includes child tables for **Assets** (required instruments with calibration details) and **Consumables** (required items with expiry details). These auto-populate into the Job Order. |
-| **Task Configuration** | Pre-defined task templates per test method (e.g., PT → Surface Prep → Apply Penetrant → Dwell → Developer → Interpretation). Auto-generates Job Order tasks. |
+| **Task Configuration** | Stores pre-defined task templates. Includes both **test-specific tasks** (e.g., UT Testing, PAUT Testing) and **general tasks** (e.g., Gate Pass, Safety Check, Documentation). These auto-generate into the Job Order as required. |
+
 
 ---
 
