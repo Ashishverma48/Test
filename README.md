@@ -1,7 +1,6 @@
 # InspectO Job Order
 
 ## Overview
-This repository contains the **Job Order module** for managing NDT (Non-Destructive Testing) projects inside Frappe/ERPNext.  
 
 The purpose of this module is to simplify how NDT jobs are planned, executed, and reported.  
 Instead of handling everything manually, this Job Order automatically manages:  
