@@ -33,11 +33,10 @@ The key focus areas are:
 
 ### 5. Tasks
 - Auto-generate steps per selected test method.  
-- Example: PT → Surface prep → Apply penetrant → Dwell → Remove → Developer → Interpretation.  
 - Link tasks with manpower and estimated time.  
 
 ### 6. Timesheets
-- Employees log time per task (mobile or desktop).  
+- Employees log time per task .  
 - Track planned vs actual time.  
 - Auto-calculate overtime.  
 
@@ -64,7 +63,7 @@ The key focus areas are:
 |---------|--------|
 | **Assets** | Asset Name, Quantity, Calibration Status, Remarks |
 | **Consumables** | Item Name, Quantity, Stock Reserved |
-| **Resources / Manpower** | Employee, Role, Availability |
+| **Resources ** | Employee, Role, Level |
 | **Tasks** | Task Name, Test Method, Manpower, Estimated Time |
 | **Timesheets** | Task, Employee, Hours Logged, Overtime |
 | **Reports** | Test Method, Status, Signed By |
@@ -103,3 +102,17 @@ Job Order
 ├── Timesheets (Child Table)
 └── Reports (Child Table)
 ```
+## License
+
+This project is licensed under the **MIT License** – see the [LICENSE](./LICENSE) file for details.  
+
+---
+
+## Company
+
+**SPA InnoVision Pvt. Ltd.**  
+📍 Location: India  
+🌐 Website: [https://spainnovision.com/]  
+📧 Email: spainnovision@gmail.com  
+
+---
