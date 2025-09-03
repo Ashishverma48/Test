@@ -88,7 +88,7 @@ Create a **simplified, fully functional Work Order** in Frappe that covers execu
 ---
 
 ## Optional: Diagram (Text-based)
-
+```
 Job Order
 ├── Basic Info
 │ ├── Job Order ID
@@ -102,3 +102,4 @@ Job Order
 ├── Tasks (Child Table)
 ├── Timesheets (Child Table)
 └── Reports (Child Table)
+```
