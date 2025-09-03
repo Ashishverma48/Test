@@ -1,137 +1,104 @@
-# AccuMatLab  
+# NDT Job Order – Frappe Automation Suite
 
-**AccuMatLab** is a purpose-built **Laboratory Information Management System (LIMS)** built on the **Frappe Framework / ERPNext**.  
-It is designed for **testing & inspection laboratories** to streamline operations, ensure **ISO/NABL compliance**, and deliver **professional, standards-based test reports**.  
+## Overview
+This repository contains the **Job Order design** for managing NDT (Non-Destructive Testing) jobs in Frappe. The Job Order includes all essential sections required for execution, tracking, and reporting while minimizing manual work.
 
-## 📦 Requirements  
-
-![Frappe](https://img.shields.io/badge/Frappe-v15-blue) 
-![ERPNext](https://img.shields.io/badge/ERPNext-v15-orange) 
-![HRMS](https://img.shields.io/badge/HRMS-v15-red) 
-![India Compliance](https://img.shields.io/badge/India%20Compliance-v15-red)  
-
-AccuMatLab requires the following apps to be installed:  
-
-- **Frappe Framework v15**  
-- **ERPNext**  
-- **HRMS**  
-- **India Compliance**  
-
+The key focus areas are:  
+- Selecting multiple test methods per job.  
+- Managing assets and consumables.  
+- Assigning manpower/resources.  
+- Generating tasks automatically per test method.  
+- Logging timesheets for tracking execution.  
+- Generating test reports automatically.
 
 ---
 
-## 🚀 Key Features  
+## Features
 
-- 📊 **End-to-End Workflow**: From Sales Orders → Lab Orders → Sample Registration → Test Execution → Review/Approval → Reporting  
-- ✅ **ISO/NABL Compliance**: Built-in workflows, audit trails, and role-based approvals  
-- ⚡ **Automation**: Auto-calculations, acceptance vs. specification checks, and report generation with QR verification  
-- 🧾 **Customizable Reports**: NABL-ready templates with customer logo and test details  
-- 🔍 **Real-Time Tracking**: AML Track for logging every stage of test execution  
-- 🔒 **Role-Based Permissions**: Lab Tech, Reviewer (L2), Approver (L3/QA)  
+### 1. Test Methods
+- Multi-select: UT, PT, PAUT, RT, MT, VT, etc.  
+- Multiple tests can be chosen for a single Job Order.  
 
----
----
+### 2. Assets
+- Machines and tools required per test (e.g., UT machine, PAUT system, MPI yoke).  
+- Calibration status auto-checked.  
 
-## 🏗️ Installation  
+### 3. Consumables
+- Materials like dye penetrant, film, couplant, wipes, etc.  
+- Stock automatically reserved from inventory.  
 
-### Get the app
+### 4. Resources / Manpower
+- Assign NDT Level II, III, Helpers, Welders.  
+- Auto-check certifications and availability.  
 
-```bash
-bench get-app --branch version-15 https://github.com/ircengg/accumatlab.git
-```
-### Install the app
+### 5. Tasks
+- Auto-generate steps per selected test method.  
+- Example: PT → Surface prep → Apply penetrant → Dwell → Remove → Developer → Interpretation.  
+- Link tasks with manpower and estimated time.  
 
-```bash
-bench --site yoursite install-app accumatlab
-```
-### Setup Requirements
+### 6. Timesheets
+- Employees log time per task (mobile or desktop).  
+- Track planned vs actual time.  
+- Auto-calculate overtime.  
 
-```bash
-bench setup requirements
-bench migrate
-bench restart
-```
-
-## 🔄 Workflow Overview  
-
-### Masters Setup  
-Define Material Groups, Test Groups & Names, Test Specs (limits), Test Protocols (standards), Test Space Table (properties, units, precision), and AML Task Configuration.  
-
-### Order Creation  
-Sales Order → AML Order .  
-
-### Sample Creation  
-AML Order → Capture Grade, Material of Construction, Sample Description & Details, Dimensions, Attachments, and Required Tests.  
-Once Sample is created, AML Task is automatically generated.  
-
-### Test Creation  
-AML Tests are created and linked with Protocol & Spec.  
-
-### Execution  
-Technicians perform tests and record raw values.  
-Progress is tracked in AML Task.  
-
-### Validation & Review  
-Automatic calculations + acceptance check vs. Test Spec.  
-
-### Report Generation  
-System generates a NABL- or Non-NABL compliant report with QR verification link.  
+### 7. Reports
+- Each test method generates its own report (PT, PAUT, UT, etc.).  
+- Auto-fill customer, asset, operator, procedure, and acceptance criteria.  
+- Technicians only fill measurement/defect details.  
+- Auto-sign workflow: Technician → Level II → Level III → Customer.  
 
 ---
 
-## 🧩 Additional Setup Requirements  
+## Job Order DocType Layout
 
-Before using AccuMatLab, complete the following setup steps:  
+**Basic Info**  
+- Job Order ID  
+- Customer  
+- Site / Location  
+- Start Date & End Date  
+- Test Methods (MultiSelect)
 
-- [x] Create **3 Employees**  
-- [x] Create **Shift Type** and link it to Employees (set default Shift Type)  
-- [x] Create **Holiday List** and assign it to Company  
-- [x] Create **3 Users** with roles: `AML Manager`, `AML Incharge`, `AML Technician` (link with Employees & set permissions)  
-- [x] Configure **Authorized Signatory** in AML Test Group  
-- [x] Create **Test Services Items**  
-- [x] Create **Customer & Address** (link Address to Customer)  
-- [x] Fill **User in AML Task Configuration** and Authorized Signatory in AML Test Group  
-- [x] Create **AML Orders** → Independent AML Task auto-created  
-- [x] Create **AML Sample** → Independent AML Task auto-created  
-- [x] Create **AML Test** (Test Group must be selected in Test Name)  
-- [x] Update Task → Task auto-created  
-- [x] Create **AML Test Report**  
-- [x] Submit & Check Print (NABL/Non-NABL compliant)  
+**Child Tables**:  
 
-## 🛠️ Troubleshooting  
-
-### App not showing in Desk  
-```bash
-bench --site yoursite list-apps
-```
-If missing, re-install app.
-
-### App errors after update  
-```bash
-bench migrate
-bench restart
-```
-### UI/Report not loading properly  
-```bash
-bench build
-bench restart
-```
-### Bench restart issues
-```bash
-bench stop && bench start
-# OR
-sudo supervisorctl restart all
-
-```
-## 📧 Contact  
-
-**SPA Innovision Pvt Ltd**  
-📩 spainnovision@gmail.com  
+| Section | Fields |
+|---------|--------|
+| **Assets** | Asset Name, Quantity, Calibration Status, Remarks |
+| **Consumables** | Item Name, Quantity, Stock Reserved |
+| **Resources / Manpower** | Employee, Role, Availability |
+| **Tasks** | Task Name, Test Method, Manpower, Estimated Time |
+| **Timesheets** | Task, Employee, Hours Logged, Overtime |
+| **Reports** | Test Method, Status, Signed By |
 
 ---
 
-## 📜 License  
+## Automation Highlights
 
-MIT License  
+- Auto-create tasks per selected test method.  
+- Auto-reserve stock for consumables.  
+- Auto-check manpower availability and certifications.  
+- Auto-generate reports and link to Job Order.  
+- Track planned vs actual time and costs.  
 
+---
 
+## Goal
+
+Create a **simplified, fully functional Work Order** in Frappe that covers execution and reporting for NDT jobs with **minimal manual effort**, while giving supervisors real-time control.
+
+---
+
+## Optional: Diagram (Text-based)
+
+Job Order
+├── Basic Info
+│ ├── Job Order ID
+│ ├── Customer
+│ ├── Site / Location
+│ ├── Start / End Date
+│ └── Test Methods (Multi-select)
+├── Assets (Child Table)
+├── Consumables (Child Table)
+├── Resources / Manpower (Child Table)
+├── Tasks (Child Table)
+├── Timesheets (Child Table)
+└── Reports (Child Table)
