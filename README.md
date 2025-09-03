@@ -113,12 +113,12 @@ Job Order
 │ ├── Customer
 │ ├── Site / Location
 │ ├── Start / End Date
-│ └── Test Methods (Multi-select)
+├── Test Methods (Child Table)
 ├── Assets (Child Table)
 ├── Consumables (Child Table)
-├── Resources / Manpower (Child Table)
+├── Resources  (Child Table)
 ├── Tasks (Child Table)
-├── Timesheets (Child Table)
+├── Documents (Child Table)
 └── Reports (Child Table)
 ```
 ## License
