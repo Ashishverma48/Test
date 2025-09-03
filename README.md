@@ -1,15 +1,18 @@
-# NDT Job Order – Frappe Automation Suite
+# InspectO Job Order
 
 ## Overview
-This repository contains the **Job Order design** for managing NDT (Non-Destructive Testing) jobs in Frappe. The Job Order includes all essential sections required for execution, tracking, and reporting while minimizing manual work.
+This repository contains the **Job Order module** for managing NDT (Non-Destructive Testing) projects inside Frappe/ERPNext.  
 
-The key focus areas are:  
-- Selecting multiple test methods per job.  
-- Managing assets and consumables.  
-- Assigning manpower/resources.  
-- Generating tasks automatically per test method.  
-- Logging timesheets for tracking execution.  
-- Generating test reports automatically.
+The purpose of this module is to simplify how NDT jobs are planned, executed, and reported.  
+Instead of handling everything manually, this Job Order automatically manages:  
+- Which tests need to be performed (UT, PT, PAUT, RT, MT, VT, etc.).  
+- What assets and consumables are required.  
+- Which manpower/resources are assigned.  
+- What tasks need to be completed step by step.  
+- How much time is planned vs. actually spent.  
+- How reports are generated and approved.  
+
+In short, it works like a **complete project dashboard for NDT jobs**, where supervisors or manager get real-time control, and technicians can directly log their work.  
 
 ---
 
@@ -45,6 +48,8 @@ The key focus areas are:
 - Auto-fill customer, asset, operator, procedure, and acceptance criteria.  
 - Technicians only fill measurement/defect details.  
 - Auto-sign workflow: Technician → Level II → Level III → Customer.  
+- Report Status Tracking: Monitor every report (PT, UT, PAUT, etc.) with clear statuses like - Draft, In Progress, In Review, Approved, Rejected, and Submitted to Customer.
+
 
 ---
 
@@ -55,20 +60,36 @@ The key focus areas are:
 - Customer  
 - Site / Location  
 - Start Date & End Date  
-- Test Methods (MultiSelect)
+- Supervisors  
 
 **Child Tables**:  
 
 | Section | Fields |
 |---------|--------|
-| **Assets** | Asset Name, Quantity, Calibration Status, Remarks |
-| **Consumables** | Item Name, Quantity, Stock Reserved |
-| **Resources ** | Employee, Role, Level |
-| **Tasks** | Task Name, Test Method, Manpower, Estimated Time |
-| **Timesheets** | Task, Employee, Hours Logged, Overtime |
-| **Reports** | Test Method, Status, Signed By |
+| **Test Methods** | Test Name |
+| **Assets** |Test, Asset Name, Calibration Status, Location,Calibration Due |
+| **Consumables** | Test, Item Name, Quantity, UOM, Consumable Expiry Date |
+| **Resources ** |Test, Resource, Employee, Role, Resource Type, Price |
+| **Tasks** | Task Name, Task Owner, Task Start Date, Task End Date, Task Supervisor, Billable, Status |
+| **Documents** | Title, Document |
+| **Reports** | Test, Supervisor, Technician, Status, Report, Create, View, Date Of Test |
 
 ---
+
+## Support DocTypes
+
+The Job Order depends on a few **supporting DocTypes** to provide data automatically.  
+
+| DocType | Purpose |
+|---------|---------|
+| **Employee Certification** | Stores employee skills, NDT Level (I/II/III), certification validity, and expiry dates. Used for auto-checking manpower eligibility. |
+| **Test Method Master** | Defines available test methods (UT, PT, PAUT, RT, MT, VT, etc.) with standards, codes, and acceptance criteria. Used to populate Job Order test selection. |
+| **Task Configuration** | Pre-defined task templates per test method (e.g., PT → Surface Prep → Apply Penetrant → Dwell → Developer → Interpretation). Auto-generates Job Order tasks. |
+| **Asset Master** | Stores assets/instruments with calibration due dates and location. Used for auto-suggesting instruments. |
+| **Consumable Master** | Defines consumable items (Dye Penetrant, Couplant, Film, etc.) with expiry details. Auto-reserved in Job Order. |
+
+---
+
 
 ## Automation Highlights
 
